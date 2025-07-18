@@ -96,25 +96,6 @@ module "public_ip_backend" {
 
 
 
-module "backend_vm" {
-  depends_on = [module.backend_subnet]
-  source     = "../modules/azurerm_virtual_machine"
-
-  resource_group_name  = "rg-todoapp"
-  location             = "centralindia"
-  vm_name              = "vm-backend"
-  vm_size              = "Standard_B1s"
-  admin_username       = "devopsadmin"
-  admin_password       = "P@ssw0rd1234!"
-  image_publisher      = "Canonical"
-  image_offer          = "0001-com-ubuntu-server-focal"
-  image_sku            = "20_04-lts"
-  image_version        = "latest"
-  nic_name             = "nic-vm-backend"
-  virtual_network_name = "vnet-todoapp"
-  subnet_name          = "backend-subnet"
-  pip_name             = "pip-todoapp-backend"
-}
 
 module "sql_server" {
   source              = "../modules/azurerm_sql_server"
